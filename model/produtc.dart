@@ -1,22 +1,29 @@
 class Product {
-  int code;
-  String name;
-  double price;
-  double _discount = 0;
+  late int _code;
+  late String _name;
+  late double _price;
+  late double _discount;
 
-  Product(
-      {required this.code,
-      required this.name,
-      required this.price,
-      double discount = 0}) {
-    _setDiscount(discount);
+  Product({code, name, price, discount = 0.0}){
+    _code = code;
+    _name = name;
+    _price = price;
+    _discount = discount;
   }
 
-  void set discount(double discountValue) => _setDiscount(discountValue);
+  int get code => _code;
+  set code(int newName) => _code = newName;
+
+  String get name => _name;
+  set name(String newName) => _name = newName;
+
+  double get price => _price;
+  set price(double newPrice) => _price = newPrice;
+
+  void set discount(double discountValue) => _discount = (discountValue < 1) ? discountValue : _discount;
   double get discount => _discount;
 
-  double get priceWithDiscount => price * (1 - _discount);
+  double get priceWithDiscount => _price * (1 - _discount);
 
-  void _setDiscount(double discountValue) =>
-      _discount = (discountValue < 1) ? discountValue : _discount;
+      
 }
